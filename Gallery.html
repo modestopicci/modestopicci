@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Image Gallery</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set dark background styling */
+        body {
+            background-color: #1e1e1e;
+            font-family: "Times New Roman", serif;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            background-size: cover;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Styling the navigation bar */
+        .nav-bar {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .nav-bar a {
+            margin: 0 15px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-bar a.gallery {
+            color: #fff;
+        }
+
+        .nav-bar a.gallery::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #7e7e7e;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+
+        .nav-bar a:hover {
+            color: #7e7e7e;
+        }
+
+        /* Gallery styling */
+        .gallery-container {
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 100px;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: 200px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover img {
+            opacity: 0.8;
+        }
+
+        .gallery-item::before {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-sizing: border-box;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Fullscreen Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        .close-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 10px;
+            z-index: 2100;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                grid-auto-rows: 150px;
+            }
+
+            .nav-bar a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+        }
+
+        /* Home button container */
+        .home-button {
+            position: fixed; /* Always visible */
+            bottom: 20px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0); /* Transparent background */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999; /* Ensures it appears above other elements */
+            pointer-events: none; /* Prevents interference with layout */
+        }
+
+        .home-button a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 32px;
+            pointer-events: auto; /* Enables clickability only on the icon */
+        }
+
+        .home-button a:hover {
+            color: #000;
+        }
+        
+        @media (max-width: 600px) {
+            .nav-bar a {
+                font-size: 18px;
+                margin: 0 15px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="nav-bar">
+        <a href="About.html" onclick="navigate('about')">ABOUT</a>
+        <a href="Gallery.html" class="gallery" onclick="navigate('gallery')">GALLERY</a>
+        <a href="Events.html" onclick="navigate('events')">EVENTS</a>
+        <a href="Contact.html" onclick="navigate('contact')">CONTACT</a>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery-container">
+        <div class="gallery-item" data-title="Image 1 Title" onclick="openModal('images/2020 Premio Marizza_46.jpg')">
+            <img src="images/2020 Premio Marizza_46.jpg" alt="Gallery Image 1">
+        </div>
+        <div class="gallery-item" data-title="Image 2 Title" onclick="openModal('images/20230410_145555.jpg')">
+            <img src="images/20230410_145555.jpg" alt="Gallery Image 2">
+        </div>
+        <div class="gallery-item" data-title="Image 3 Title" onclick="openModal('images/FOTO PRINCIPALE.jpg')">
+            <img src="images/FOTO PRINCIPALE.jpg" alt="Gallery Image 3">
+        </div>
+        <div class="gallery-item" data-title="Image 4 Title" onclick="openModal('images/GDB_7821.jpg')">
+            <img src="images/GDB_7821.jpg" alt="Gallery Image 4">
+        </div>
+        <div class="gallery-item" data-title="Image 5 Title" onclick="openModal('images/img_modesto1.jpg')">
+            <img src="images/img_modesto1.jpg" alt="Gallery Image 5">
+        </div>
+        <div class="gallery-item" data-title="Image 6 Title" onclick="openModal('images/img_modesto2.jpg')">
+            <img src="images/img_modesto2.jpg" alt="Gallery Image 6">
+        </div>
+        <div class="gallery-item" data-title="Image 7 Title" onclick="openModal('images/img_modesto3.jpg')">
+            <img src="images/img_modesto3.jpg" alt="Gallery Image 7">
+        </div>
+        <div class="gallery-item" data-title="Image 8 Title" onclick="openModal('images/img_modesto4.jpg')">
+            <img src="images/img_modesto4.jpg" alt="Gallery Image 8">
+        </div>
+        <div class="gallery-item" data-title="Image 9 Title" onclick="openModal('images/mar.jpg')">
+            <img src="images/mar.jpg" alt="Gallery Image 9">
+        </div>
+        <div class="gallery-item" data-title="Image 10 Title" onclick="openModal('images/piano3163.jpg')">
+            <img src="images/piano3163.jpg" alt="Gallery Image 10">
+        </div>
+        <div class="gallery-item" data-title="Image 11 Title" onclick="openModal('images/piano3177.jpg')">
+            <img src="images/piano3177.jpg" alt="Gallery Image 11">
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal -->
+    <div class="modal" id="imageModal">
+        <button class="close-button" onclick="closeModal()">&#10005</button>
+        <img id="modalImage" src="" alt="Fullscreen Image">
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+    </script>
+    <!-- Home Button -->
+    <div class="home-button">
+        <a href="https://enderpdc.github.io/webtest/">
+            <span class="material-icons">home</span>
+        </a>
+    </div>
+</body>
+</html>

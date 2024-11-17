@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modesto Picci - Pianist</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set dark background styling */
+        body {
+            background-color: #1e1e1e;
+            font-family: "Times New Roman", serif;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            background-size: cover;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Styling the navigation bar */
+        .nav-bar {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .nav-bar a {
+            margin: 0 15px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-bar a.about {
+            color: #fff;
+        }
+
+        .nav-bar a.about::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #7e7e7e;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+
+        .nav-bar a:hover {
+            color: #7e7e7e;
+        }
+
+        /* Content layout styling */
+        .bio-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            max-width: 800px;
+            margin: 100px auto;
+        }
+
+        .bio-section .section {
+            display: flex;
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Alternate sections with row-reverse */
+        .bio-section .section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .bio-section h2 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .bio-section p {
+            line-height: 1.6;
+            font-size: 16px;
+            color: #ddd;
+            text-indent: 2em;
+        }
+
+        /* Image styling */
+        .bio-section img {
+            max-width: 40%;
+            border-radius: 8px;
+        }
+
+        .download-btn {
+            background-color: #7e7e7e;
+            color: #1e1e1e;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            /* Stack sections vertically with image below text */
+            .bio-section .section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            /* Remove reverse layout for mobile */
+            .bio-section .section.reverse {
+                flex-direction: column;
+            }
+
+            .nav-bar a {
+                font-size: 18px;
+                margin: 0 15px;
+            }
+
+            .bio-section h2 {
+                font-size: 20px;
+            }
+
+            .bio-section p {
+                font-size: 14px;
+                text-align: left;
+                text-indent: 1.5em;
+                padding: 0 10px;
+            }
+
+            .download-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* Home button container */
+        .home-button {
+            position: fixed; /* Always visible */
+            bottom: 20px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0); /* Transparent background */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999; /* Ensures it appears above other elements */
+            pointer-events: none; /* Prevents interference with layout */
+        }
+
+        .home-button a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 32px;
+            pointer-events: auto; /* Enables clickability only on the icon */
+        }
+
+        .home-button a:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="nav-bar">
+        <a href="About.html" class="about" onclick="navigate('about')">ABOUT</a>
+        <a href="Gallery.html" onclick="navigate('gallery')">GALLERY</a>
+        <a href="Events.html" onclick="navigate('events')">EVENTS</a>
+        <a href="Contact.html" onclick="navigate('contact')">CONTACT</a>
+    </div>
+
+    <div class="bio-section">
+        <!-- Introduction Section -->
+        <div class="section">
+            <div>
+                <h2>About Modesto Picci</h2>
+                <p>
+                    Modesto Picci was born in Gagliano del Capo(Lecce, Italy) in 1996 on April 26.he graduated 
+                    in piano soloist master-level with the mention of honor under the guidance of Maestro 
+                    Pasquale Iannone and in chamber-music master-level at the Conservatory N. Piccinni” in Bari. He 
+                    has participated in various master classes held by professors such as Gàbor Farkas, Andrea 
+                    Lucchesini, Ronan O’Hora, Jin Ju, Daniel Rivera and Marsida Koni.
+                </p>
+            </div>
+        </div>
+
+        <!-- Awards and Competitions Section (reverse layout) -->
+        <div class="section">
+            <div>
+                <h2>Awards and Competitions</h2>
+                <p>
+                    He has won numerous international competitions including: “XXIV Stefano Marizza” 
+                    International Piano Competition, Premio Nazionale delle Arti (3° prize), Monegros 88 Keys 
+                    international Piano competition (Sarinena, Spain), Minerbio International Piano 
+                    Competition ( Bologna), Competition Antonio Salieri” International Competition for Young 
+                    Musicians (Legnago), International Piano Competition City of San Donà di Piave” 
+                    International Piano Competition, International Musical Competition Lucia Iurleo” (San Vito 
+                    dei Normanni), International Musical Competition Don Matteo Colucci” (Fasano), 
+                    International Musical Competition Symphonia” International Music Competition 
+                    (Scorrano), International Music Competition “San Lazzaro Trophy” (Gallipoli).
+                </p>
+            </div>
+        </div>
+
+        <!-- Performances and Collaborations Section -->
+        <div class="section">
+            <div>
+                <h2>Performances and Collaborations</h2>
+                <p>
+                    He has performed recitals in many Italian cities such as Venice, Bologna, Barletta, Bari, 
+                    Naples and Lecce, performing for prestigious festivals such as the Barletta Piano Festival, 
+                    Camerata musicale Barese, Camerata musicale Salentina, Osimo Piano Hours, San Giacomo 
+                    Festival and abroad in Gwanjiu (South Korea), in Helsinki (Finland) and in Aachen (Germany). 
+                    He recently played at the “L. D’ Annunzio” Conservatory in Pescara and with cellist Stefano 
+                    Cerrato at the “N. Piccinni” Conservatory in Bari, and he played contemporary music 
+                    pieces(Etudes Australes by Ivan Fedele) in Gwanjiu ( South Korea) and at Barletta Piano 
+                    Festival (Barletta, Italy)
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div>
+                <h2>Soloist Appearances</h2>
+                <p>
+                    He also held chamber music recitals with international musicians such as Martti Rousi and Stefano 
+                    Cerrato and  played as soloist with “Orchestra Metropolitana di Bari”: Nino Rota’ s Piano Concerto 
+                    in Do conducted by Sir Neil Thomson, Beethoven’ s Piano Concerto no. 5 conducted by Jan Milosz 
+                    Zarzycki and Rachmaninov’ s Piano Concerto no. 3 conducted by Claude Villaret at the 
+                    Nino Rota Auditorium in Bari and debuted at Teatro “La Nuova Fenice” in Osimo (Ancona, Italy) 
+                    playing Rachmaninov’s Piano Concerto no. 3 with Orchestra Filarmonica Marchigiana conducted 
+                    by Manlio Benzi.
+                </p>
+            </div>
+        </div>
+        <a href="picci.pdf" class="download-btn">Download Bio</a>
+    </div>
+    <!-- Home Button -->
+    <div class="home-button">
+        <a href="https://enderpdc.github.io/webtest/">
+            <span class="material-icons">home</span>
+        </a>
+    </div>
+</body>
+</html>
