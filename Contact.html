@@ -206,25 +206,24 @@
     </div>
 
     <script>
-        function submitForm(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            
-            fetch('https://script.google.com/macros/s/AKfycbwQiePRvbS8u6e6L2UYiVBowM4bO45nQQRbUQPHESjawMHnxoYiAizx6DwgOK86Hq6J/exec', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(result => {
-                alert("Message sent successfully!");
-                document.getElementById('contactForm').reset();
-            })
-            .catch(error => {
-                console.error("Error!", error);
-                alert("There was an error sending the message.");
-            });
-        }
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        // Get form data
+        const formData = new FormData(e.target);
+    
+        // Send the data to the Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbxPYO6JctadsN3Kq-LEwclYdUsNwnzN4jNHi0KfVr__yqf-FTXS2i6TozC3_RNfrFIQRg/exec', {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('successMessage').style.display = 'block';
+          e.target.reset();
+        })
+        .catch(error => console.error('Error!', error.message));
+      });
     </script>
 </body>
 </html>
