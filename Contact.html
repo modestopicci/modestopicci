@@ -207,10 +207,11 @@
             const jsonData = Object.fromEntries(formData.entries());
     
             try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbzhxUlDHeW2SbzTlfgaYFb_jeXBw18IH-bL3sTzXT9tmivV1Hs29xRCIicAgSM9nM8NIw/exec", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(jsonData)
+                const response = await fetch("YOUR_DEPLOYED_WEB_APP_URL", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(jsonData),
+                  mode: "cors"
                 });
     
                 const result = await response.json();
