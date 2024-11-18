@@ -191,7 +191,7 @@
     <!-- Contact Form -->
     <div class="contact-form">
         <h2>Contact Me</h2>
-        <form id="contactForm" onsubmit="submitForm(event)">
+        <form id="contactForm">
             <input type="email" name="email" placeholder="Your email" required>
             <input type="text" name="phone" placeholder="Your phone number (optional)">
             <textarea name="message" placeholder="Your message" rows="5" required></textarea>
@@ -206,8 +206,14 @@
     </div>
 
     <script>
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
+      function submitForm(e) {
         e.preventDefault();
+    
+        // Show confirmation prompt
+        const userConfirmed = window.confirm("Are you sure you want to send this message?");
+        if (!userConfirmed) {
+          return; // Stop submission if user cancels
+        }
     
         // Get form data
         const formData = new FormData(e.target);
@@ -219,11 +225,17 @@
         })
         .then(response => response.text())
         .then(data => {
-          document.getElementById('successMessage').style.display = 'block';
-          e.target.reset();
+          alert("Message sent successfully!"); // Confirmation alert
+          e.target.reset(); // Reset the form
         })
-        .catch(error => console.error('Error!', error.message));
-      });
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert("An error occurred while sending the message.");
+        });
+      }
+    
+      document.getElementById('contactForm').addEventListener('submit', submitForm);
     </script>
+    
 </body>
 </html>
