@@ -204,5 +204,27 @@
             <span class="material-icons">home</span>
         </a>
     </div>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            
+            fetch('https://script.google.com/macros/s/AKfycbwQiePRvbS8u6e6L2UYiVBowM4bO45nQQRbUQPHESjawMHnxoYiAizx6DwgOK86Hq6J/exec', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert("Message sent successfully!");
+                document.getElementById('contactForm').reset();
+            })
+            .catch(error => {
+                console.error("Error!", error);
+                alert("There was an error sending the message.");
+            });
+        }
+    </script>
 </body>
 </html>
