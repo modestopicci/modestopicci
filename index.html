@@ -80,8 +80,31 @@
                 padding: 0.1rem 0.2rem;
             }
         }
+
+        /* Bottom social media icons */
+        .social-icons {
+            position: fixed; /* This fixes it to the viewport */
+            bottom: 20px; /* Distance from bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center adjust */
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            z-index: 1000; /* Ensures it stays on top of other content */
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+        }
+
+        .social-icons img {
+            width: 100%;
+            height: auto !important;
+        }
     </style>
-    
 </head>
 <body>
     <!-- Top Navigation -->
