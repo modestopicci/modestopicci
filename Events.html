@@ -45,11 +45,11 @@
             transition: color 0.3s;
         }
 
-        .navbar a.about {
+        .navbar a.events {
             color: #fff;
         }
 
-        .navbar a.about::after {
+        .navbar a.events::after {
             content: '';
             display: block;
             width: 100%;
@@ -185,9 +185,9 @@
     <!-- Top Navigation -->
     <nav class="navbar">
         <div class="nav-links">
-            <a href="About.html" class="about" onclick="navigate('about')">ABOUT</a>
+            <a href="About.html" onclick="navigate('about')">ABOUT</a>
             <a href="Gallery.html" onclick="navigate('gallery')">GALLERY</a>
-            <a href="Events.html" onclick="navigate('events')">EVENTS</a>
+            <a href="Events.html" class="events" onclick="navigate('events')">EVENTS</a>
             <a href="Contact.html" onclick="navigate('contact')">CONTACT</a>
         </div>
     </nav>
