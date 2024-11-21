@@ -27,49 +27,87 @@
             text-align: center;
         }
     
-        /* Top navigation bar styling */
-        .nav-bar {
-            margin-top: 20px;
+        /* Styling the navigation bar */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
         }
-    
-        .nav-bar a {
+
+        .navbar a {
             margin: 0 15px;
             color: #ccc;
             text-decoration: none;
             font-size: 18px;
+            position: relative;
+            transition: color 0.3s;
         }
-    
-        .nav-bar a:hover {
+
+        .navbar a.about {
+            color: #fff;
+        }
+
+        .navbar a.about::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #7e7e7e;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+        }
+
+        .navbar a:hover {
             color: #7e7e7e;
         }
-    
-        /* Bottom social media icons */
-        .social-icons {
-            margin-bottom: 80px;
+
+        /* Media Queries */
+        @media screen and (max-width: 800px) {
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 18px;
+                padding: 0.4rem 0.8rem;
+            }
         }
-    
-        .social-icons a {
-            margin: 0 15px;
-            display: inline-block;
-            width: 40px;
-            height: 40px;
+
+        @media screen and (max-width: 600px) {
+            .nav-links a {
+                font-size: 14px;
+                padding: 0.3rem 0.6rem;
+            }
         }
-    
-        .social-icons img {
-            width: 100%;
-            height: auto !important;
+
+        @media screen and (max-width: 400px) {
+            .nav-links a {
+                margin: 0 8px;
+                font-size: 11px;
+                padding: 0.2rem 0.4rem;
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            .nav-links a {
+                margin: 0 5px;
+                font-size: 8px;
+                padding: 0.1rem 0.2rem;
+            }
         }
     </style>
     
 </head>
 <body>
     <!-- Top Navigation -->
-    <div class="nav-bar">
-        <a href="About.html" onclick="navigate('about')">ABOUT</a>
-        <a href="Gallery.html" onclick="navigate('gallery')">GALLERY</a>
-        <a href="Events.html" onclick="navigate('events')">EVENTS</a>
-        <a href="Contact.html" onclick="navigate('contact')">CONTACT</a>
-    </div>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="About.html" class="about" onclick="navigate('about')">ABOUT</a>
+            <a href="Gallery.html" onclick="navigate('gallery')">GALLERY</a>
+            <a href="Events.html" onclick="navigate('events')">EVENTS</a>
+            <a href="Contact.html" onclick="navigate('contact')">CONTACT</a>
+        </div>
+    </nav>
 
     <!-- Social Media Links -->
     <div class="social-icons">
